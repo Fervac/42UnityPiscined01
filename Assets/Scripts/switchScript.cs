@@ -13,19 +13,19 @@ public class SwitchScript : MonoBehaviour
     {
 		if (open == false)
 		{
-			if (col.tag == "Thomas")
+			if (col.CompareTag("Thomas"))
 			{
 				choice = 0;
 				color = new Color(230f, 0f, 0f); // Red
 			}
 
-			if (col.tag == "John")
+			if (col.CompareTag("John"))
 			{
 				choice = 1;
 				color = new Color(255f, 242f, 0f); // Yellow
 			}
 
-			if (col.tag == "Claire")
+			if (col.CompareTag("Claire"))
 			{
 				choice = 2;
 				color = new Color(0f, 0f, 255f); // Blue

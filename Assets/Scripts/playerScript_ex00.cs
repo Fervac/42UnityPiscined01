@@ -54,21 +54,20 @@ public class PlayerScript_ex00 : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D col)
     {
-		if (col.tag == rb[choice].tag)
+		if (col.CompareTag(rb[choice].tag))
 		{
 			win = true;
-			Debug.Log("test");
 		}
     }
 
 	void OnTriggerStay2D(Collider2D col)
 	{
-		if(col.tag == "Platform")
+		if(col.CompareTag("Platform"))
 		{
 			rb[choice].transform.parent = col.transform;
 		}
 
-		if(col.tag == "Claire")
+		if(col.CompareTag("Claire"))
 		{
 			rb[choice].transform.parent = col.transform;
 		}
@@ -76,17 +75,17 @@ public class PlayerScript_ex00 : MonoBehaviour
 
 	void OnTriggerExit2D(Collider2D col)
     {
-		if (col.tag == rb[choice].tag)
+		if (col.CompareTag(rb[choice].tag))
 		{
 			win = false;
 		}
 
-		if(col.tag == "Platform")
+		if(col.CompareTag("Platform"))
 		{
 			rb[choice].transform.parent = null;
 		}
 
-		if(col.tag == "Claire")
+		if(col.CompareTag("Claire"))
 		{
 			rb[choice].transform.parent = null;
 		}

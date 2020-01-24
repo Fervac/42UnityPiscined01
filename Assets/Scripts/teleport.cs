@@ -15,8 +15,6 @@ public class Teleport : MonoBehaviour
 		oldColor2 = tpIN.GetComponent<SpriteRenderer>().color ;
 	}
 
-
-
 	void OnTriggerEnter2D(Collider2D col)
     {
 		if (this.name == "teleportIN")
