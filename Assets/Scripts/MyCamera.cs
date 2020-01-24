@@ -3,55 +3,67 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class camera : MonoBehaviour
+public class MyCamera : MonoBehaviour
 {
 	public GameObject[] player;
     private Vector3 offset;
 	int choice = 0;
 
-	playerScript_ex00 script;
+	PlayerScript_ex00 script;
 
-    void Start ()
+    void Start()
     {
         offset = transform.position - player[choice].transform.position;
-		script = player[choice].GetComponent<playerScript_ex00>();
+		script = player[choice].GetComponent<PlayerScript_ex00>();
 
 		for (int i = 0; i < script.rb.Length; i++)
 		{
 			if (i != 0)
+			{
 				script.rb[i].isKinematic = true;
+			}
 			else
+			{
 				script.rb[i].isKinematic = false;
+			}
 		}
 
 		for (int i = 10; i < 10 + player.Length; i++)
 		{
 			if (i != 10 + choice)
+			{
 				Physics2D.IgnoreLayerCollision(0, i);
+			}
 			else
+			{
 				Physics2D.IgnoreLayerCollision(0, i, false);
+			}
 		}
     }
 
-	void Update ()
+	void Update()
 	{
-		select();
+		Select();
 
 		if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Backspace))
-			reload();
+		{
+			Reload();
+		}
 
 		transform.position = Vector3.Lerp(transform.position, player[choice].transform.position + offset, .5f);
 
-		if (checkWin() == true)
-			nextLevel();
+		if (CheckWin() == true)
+		{
+			NextLevel();
+		}
 	}
 
-	void select()
+	void Select()
 	{
 		if (Input.GetKeyDown("1"))
 		{
 			choice = 0;
-			enable();
+			Enable();
 			script.move = 1.2f;
 			script.jump = 4.5f;
 		}
@@ -59,7 +71,7 @@ public class camera : MonoBehaviour
 		if (Input.GetKeyDown("2"))
 		{
 			choice = 1;
-			enable();
+			Enable();
 			script.move = 1.4f;
 			script.jump = 5.5f;
 		}
@@ -67,52 +79,62 @@ public class camera : MonoBehaviour
 		if (Input.GetKeyDown("3"))
 		{
 			choice = 2;
-			enable();
+			Enable();
 			script.move = 1.0f;
 			script.jump = 4f;
 		}
 	}
 
-	void enable()
+	void Enable()
 	{
 		for (int i = 0; i < player.Length; i++)
 		{
 			if (i != choice)
-				player[i].GetComponent<playerScript_ex00>().enabled = false;
+			{
+				player[i].GetComponent<PlayerScript_ex00>().enabled = false;
+			}
 			else
-				player[i].GetComponent<playerScript_ex00>().enabled = true;
+			{
+				player[i].GetComponent<PlayerScript_ex00>().enabled = true;
+			}
 		}
 
 		for (int i = 10; i < 10 + player.Length; i++)
 		{
 			if (i != 10 + choice)
+			{
 				Physics2D.IgnoreLayerCollision(0, i);
+			}
 			else
+			{
 				Physics2D.IgnoreLayerCollision(0, i, false);
+			}
 		}
 
-		script = player[choice].GetComponent<playerScript_ex00>();
+		script = player[choice].GetComponent<PlayerScript_ex00>();
 		script.choice = choice;
 		script.change = true;
 	}
 
-	void reload()
+	void Reload()
 	{
 		Scene scene = SceneManager.GetActiveScene();
 		SceneManager.LoadScene(scene.name);
 	}
 
-	bool checkWin()
+	bool CheckWin()
 	{
 		for (int i = 0; i < player.Length; i++)
 		{
-			if (player[i].GetComponent<playerScript_ex00>().win == false)
+			if (player[i].GetComponent<PlayerScript_ex00>().win == false)
+			{
 				return (false);
+			}
 		}
 		return (true);
 	}
 
-	void nextLevel()
+	void NextLevel()
 	{
 		Debug.Log("YOU WIN!");
 

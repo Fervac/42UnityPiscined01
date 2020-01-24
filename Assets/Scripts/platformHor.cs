@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class platformHor : MonoBehaviour
+public class PlatformHor : MonoBehaviour
 {
 	Vector2 startPosition;
 	Vector2 newPosition;

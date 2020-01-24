@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class switchScript : MonoBehaviour
+public class SwitchScript : MonoBehaviour
 {
 	public GameObject[] door;
 	int choice;
@@ -13,22 +13,22 @@ public class switchScript : MonoBehaviour
     {
 		if (open == false)
 		{
-			if (col.name == "Thomas")
+			if (col.tag == "Thomas")
 			{
 				choice = 0;
-				color = new Color(230f, 0f, 0f); //red
+				color = new Color(230f, 0f, 0f); // Red
 			}
 
-			if (col.name == "John")
+			if (col.tag == "John")
 			{
 				choice = 1;
-				color = new Color(255f, 242f, 0f); //yellow
+				color = new Color(255f, 242f, 0f); // Yellow
 			}
 
-			if (col.name == "Claire")
+			if (col.tag == "Claire")
 			{
 				choice = 2;
-				color = new Color(0f, 0f, 255f); //blue
+				color = new Color(0f, 0f, 255f); // Blue
 			}
 
 			door[choice].transform.position += new Vector3(0, 2, 0);
@@ -38,7 +38,7 @@ public class switchScript : MonoBehaviour
 		else
 		{
 			door[choice].transform.position += new Vector3(0, -2, 0);
-			this.GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f); //white
+			this.GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f); // White
 			open = false;
 		}
     }

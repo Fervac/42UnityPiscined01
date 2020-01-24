@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerScript_ex00 : MonoBehaviour
+public class PlayerScript_ex00 : MonoBehaviour
 {
 	public float jump = 4.5f;
 	public float move = 1.5f;
@@ -14,13 +14,19 @@ public class playerScript_ex00 : MonoBehaviour
     void Update()
     {
 		if (Input.GetKeyDown("space") && rb[choice].velocity.y == 0.0f)
+		{
 			rb[choice].velocity = new Vector2(0.0f, jump);
+		}
 
 		if (Input.GetKey("d"))
+		{
 			rb[choice].velocity = new Vector2(move, 0.0f);
+		}
 
 		if (Input.GetKey("a"))
+		{
 			rb[choice].velocity = new Vector2(-move, 0.0f);
+		}
 
 		if (change == true)
 		{
@@ -31,9 +37,13 @@ public class playerScript_ex00 : MonoBehaviour
 			for (int i = 0; i < rb.Length; i++)
 			{
 				if (i != choice)
+				{
 					rb[i].isKinematic = true;
+				}
 				else
+				{
 					rb[i].isKinematic = false;
+				}
 			}
 			change = false;
 		}
@@ -41,29 +51,42 @@ public class playerScript_ex00 : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D col)
     {
-		if (col.gameObject.name == rb[choice].name + "Exit")
+		if (col.tag == rb[choice].tag)
+		{
 			win = true;
+			Debug.Log("test");
+		}
     }
 
 	void OnTriggerStay2D(Collider2D col)
 	{
-		if(col.gameObject.tag == "platform")
+		if(col.tag == "Platform")
+		{
 			rb[choice].transform.parent = col.transform;
+		}
 
-		if(col.gameObject.name == "Claire")
+		if(col.tag == "Claire")
+		{
 			rb[choice].transform.parent = col.transform;
+		}
 	}
 
 	void OnTriggerExit2D(Collider2D col)
     {
-		if (col.gameObject.name == rb[choice].name + "Exit")
+		if (col.tag == rb[choice].tag)
+		{
 			win = false;
+		}
 
-		if(col.gameObject.tag == "platform")
+		if(col.tag == "Platform")
+		{
 			rb[choice].transform.parent = null;
+		}
 
-		if(col.gameObject.name == "Claire")
+		if(col.tag == "Claire")
+		{
 			rb[choice].transform.parent = null;
+		}
     }
 
 }

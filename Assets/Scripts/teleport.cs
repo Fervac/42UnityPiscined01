@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class teleport : MonoBehaviour
+public class Teleport : MonoBehaviour
 {
 	public GameObject tpIN;
 	public GameObject tpOUT;
@@ -24,18 +24,18 @@ public class teleport : MonoBehaviour
 			tpOUT.GetComponent<Collider2D>().enabled = false;
 			tpOUT.GetComponent<SpriteRenderer>().color = new Color(100f, 90f, 125f);
 			col.transform.position = tpOUT.transform.position;
-			StartCoroutine(timer(0));
+			StartCoroutine(Timer(0));
 		}
 		else
 		{
 			tpIN.GetComponent<Collider2D>().enabled = false;
 			tpIN.GetComponent<SpriteRenderer>().color = new Color(100f, 90f, 125f);
 			col.transform.position = tpIN.transform.position;
-			StartCoroutine(timer(1));
+			StartCoroutine(Timer(1));
 		}
     }
 
-	IEnumerator timer(int i)
+	IEnumerator Timer(int i)
     {
 		yield return new WaitForSeconds(3);
 		if (i == 0)
