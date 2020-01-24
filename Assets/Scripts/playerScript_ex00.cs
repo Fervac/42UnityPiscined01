@@ -11,8 +11,8 @@ public class PlayerScript_ex00 : MonoBehaviour
 	public bool win = false;
 	public Rigidbody2D[] rb;
 
-    void Update()
-    {
+	void FixedUpdate()
+	{
 		if (Input.GetKeyDown("space") && rb[choice].velocity.y == 0.0f)
 		{
 			rb[choice].velocity = new Vector2(0.0f, jump);
@@ -27,7 +27,10 @@ public class PlayerScript_ex00 : MonoBehaviour
 		{
 			rb[choice].velocity = new Vector2(-move, 0.0f);
 		}
+	}
 
+    void Update()
+    {
 		if (change == true)
 		{
 			foreach (Rigidbody2D rbs in rb)
