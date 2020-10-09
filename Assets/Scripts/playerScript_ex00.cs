@@ -23,7 +23,7 @@ public class PlayerScript_ex00 : MonoBehaviour
 			rb[choice].velocity = new Vector2(move, 0.0f);
 		}
 
-		if (Input.GetKey("a"))
+		if (Input.GetKey("q"))
 		{
 			rb[choice].velocity = new Vector2(-move, 0.0f);
 		}
